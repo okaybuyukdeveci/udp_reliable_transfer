@@ -117,7 +117,3 @@ python analysis/tcp_compare.py --file test_files/test_1MB.bin \
 | 2 | Timeout: 0.1s/0.5s/1s/2s | 1MB, 1KB paket, loss=5% |
 | 3 | Kayıp: 0%/5%/10%/20% | 1MB, 1KB paket, timeout=1s |
 | 4 | Dosya: 10KB/100KB/1MB/10MB | 1KB paket, timeout=1s |
-
-## GitHub
-
-https://github.com/okaybuyukdeveci/netprobe
