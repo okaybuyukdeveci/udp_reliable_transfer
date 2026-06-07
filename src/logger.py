@@ -131,10 +131,12 @@ class TransferLogger:
     def _write_summary(self, total_bytes: int, elapsed: float, success: bool):
         avg_rtt = sum(self._rtts) / len(self._rtts) if self._rtts else 0
         throughput = total_bytes / elapsed if elapsed > 0 else 0
-        # Goodput: toplam gönderim sayısı (ilk + retransmit) üzerinden overhead oranı
-        total_transmissions = self.sent_count + self.retransmit_count
-        overhead_ratio = self.retransmit_count / total_transmissions if total_transmissions > 0 else 0
-        goodput = max(0.0, throughput * (1 - overhead_ratio))
+        # Goodput: Yalnızca ilk (benzersiz) iletimler faydalı veri sayılır
+        # unique_packets = sent_count - retransmit_count formülü yeniden gönderilmemiş orijinal paket sayısını verir
+        unique_packets = max(0, self.sent_count - self.retransmit_count)
+        total_transmissions = self.sent_count if self.sent_count > 0 else 1
+        useful_ratio = unique_packets / total_transmissions
+        goodput = max(0.0, throughput * useful_ratio)
         total_sent = self.sent_count
         # Kayıp oranı: ACK alınamayan paket oranı; negatif olmayacak şekilde sınırlandırılır
         loss_rate = max(0.0,
