@@ -57,7 +57,7 @@ def test_stop_and_wait_small_file(tmp_path):
 
 
 @pytest.mark.integration
-def test_transfer_with_simulated_loss(tmp_path):
+def test_logger_counters_and_lossless_transfer(tmp_path):
     """
     Sunucu tarafında ACK kayıplarının retransmission mekanizmasını tetiklediğini
     doğrular. Kayıp olmayan istemci → sunucu aktarımında sunucu tüm veriyi alır;
