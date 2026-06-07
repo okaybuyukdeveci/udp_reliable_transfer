@@ -14,15 +14,16 @@ from src.server import _handle_transfer
 from src.network_sim import create_udp_socket
 
 
-def _start_server(port: int, output_dir: str, loss_rate: float = 0.0):
+def _start_server(port: int = 0, output_dir: str = ".", loss_rate: float = 0.0):
     sock = create_udp_socket(loss_rate=loss_rate)
-    sock.bind(("127.0.0.1", port))
+    sock.bind(("127.0.0.1", port))  # port=0 OSnin boş bir port seçmesini sağlar
     sock.settimeout(5.0)
+    actual_port = sock.getsockname()[1]  # atanan portu geri oku
     t = threading.Thread(
         target=_handle_transfer, args=(sock, output_dir), daemon=True
     )
     t.start()
-    return t, sock
+    return t, sock, actual_port
 
 
 def md5(path: str) -> str:
