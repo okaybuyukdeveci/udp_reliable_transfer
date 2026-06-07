@@ -32,6 +32,8 @@ pip install matplotlib pandas
 
 Python 3.10+ gereklidir (yerleşik: `socket`, `hashlib`, `threading`, `csv`, `json`).
 
+N> Not: Ubuntu/Linux sistemlerde `python` komutu varsayılan olarak bulunmayabilir. Bu durumda örneklerdeki `python` komutları yerine `python3` kullanın.
+
 ## Çalıştırma
 
 ### 1. Temel Kullanım
