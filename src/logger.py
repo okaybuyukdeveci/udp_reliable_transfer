@@ -137,8 +137,9 @@ class TransferLogger:
         goodput = max(0.0, throughput * (1 - overhead_ratio))
         total_sent = self.sent_count
         # Kayıp oranı: ACK alınamayan paket oranı; negatif olmayacak şekilde sınırlandırılır
+        effective_acks = min(self.ack_count, total_sent)
         loss_rate = max(0.0,
-            (total_sent - self.ack_count) / total_sent if total_sent > 0 else 0
+            (total_sent - effective_acks) / total_sent if total_sent > 0 else 0
         )
         retx_rate = self.retransmit_count / total_sent if total_sent > 0 else 0
 
