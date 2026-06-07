@@ -44,7 +44,7 @@ def test_stop_and_wait_small_file(tmp_path):
        time.sleep(0.1)
 
     ok = send_file(
-       str(src), "127.0.0.1", port, 15101,
+       str(src), "127.0.0.1", port,
         chunk_size=512, timeout=1.0, max_retries=5,
         window_size=1, loss_rate=0.0, delay_ms=0.0,
     )
