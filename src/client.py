@@ -12,7 +12,6 @@ Kullanım:
 
 import argparse
 import hashlib
-import math
 import os
 import socket
 import sys
