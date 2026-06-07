@@ -28,8 +28,11 @@ network_proje/
 ```bash
 pip install matplotlib pandas
 ```
+## Gereksinimler
 
 Python 3.10+ gereklidir (yerleşik: `socket`, `hashlib`, `threading`, `csv`, `json`).
+
+N> Not: Ubuntu/Linux sistemlerde `python` komutu varsayılan olarak bulunmayabilir. Bu durumda örneklerdeki `python` komutları yerine `python3` kullanın.
 
 ## Çalıştırma
 
