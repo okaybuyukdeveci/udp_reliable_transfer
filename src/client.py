@@ -131,8 +131,10 @@ def send_go_back_n(sock, chunks: list[bytes], server_addr: tuple,
                         logger.log_ack(ack_num)
             except socket.timeout:
                 pass
-            except Exception:
-                pass
+            except OSError as e:
+                if not stop_event.is_set():
+                    print(f"[CLIENT] ACK alım hatası: {e}")
+                break
 
     receiver = Thread(target=ack_receiver, daemon=True)
     receiver.start()
