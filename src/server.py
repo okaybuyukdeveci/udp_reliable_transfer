@@ -27,6 +27,11 @@ def md5_of_bytes(data: bytes) -> str:
 
 def run_server(host: str, port: int, output_dir: str,
                loss_rate: float, delay_ms: float):
+    """
+    NOT: Bu sunucu tek istemciyi sıralı olarak işler.
+    Bir aktarım tamamlanmadan ikinci istemci kabul edilmez.
+    Eş zamanlı çok istemci desteği için threading gereklidir.
+    """
     os.makedirs(output_dir, exist_ok=True)
 
     sock = create_udp_socket(loss_rate=loss_rate, delay_ms=delay_ms)
