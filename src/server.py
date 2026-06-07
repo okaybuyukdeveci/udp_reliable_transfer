@@ -66,7 +66,7 @@ def _handle_transfer(sock: SimulatedSocket, output_dir: str):
             print(f"[SERVER] İstemci bağlandı: {addr}")
             elif addr != client_addr:
                 print(f"[SERVER] Bilinmeyen istemciden paket yoksayıldı: {addr}")
-            continue
+                continue
 
         seq = pkt["seq_num"]
         total_pkts = pkt["total_pkts"]
