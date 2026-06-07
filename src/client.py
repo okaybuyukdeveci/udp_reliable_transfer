@@ -173,8 +173,8 @@ def send_go_back_n(sock, chunks: list[bytes], server_addr: tuple,
                             failed_flag[0] = True
                             break
                         logger.log_timeout(seq, attempt=attempts[seq])
-                        # Go-Back-N: base'den yeniden gönder
-                        for resend_seq in range(seq, min(next_seq, total)):
+                        next_seq = base
+                        for resend_seq in range(base, min(base + window_size, total)):
                             if not acked[resend_seq]:
                                 pkt = pack_data(resend_seq, total, chunks[resend_seq])
                                 attempts[resend_seq] += 1
